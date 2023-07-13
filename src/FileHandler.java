@@ -66,7 +66,6 @@ public class FileHandler {
 		try {
 			FileWriter file=new FileWriter(path,true);
 			BufferedWriter writer=new BufferedWriter(file);
-			writer.newLine();
 			writer.write(mail.getID()+",");
 			for(String user:mail.getMailUsers()) {
 				writer.write(user+"-");
@@ -98,16 +97,15 @@ public class FileHandler {
 					userNotFound.add(user);
 			}
 			writer.write(","+mail.getSubject()+","+mail.getMail()+","+mail.getTime());
+			writer.newLine();
 			writer.flush();
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(userNotFound);
+//		System.out.println(userNotFound);
 		if(!userNotFound.isEmpty()) {
-			System.out.println("1");
 			if (path.equals("D:\\Gmail Management System\\mail.csv")) {
-				System.out.println("called");
 				String tempMail = mail.getID() + 1 + "," + mail.getSender() + "," + mail.getIsDraftMail() + ",,,mailer@googlemail.com," + mail.getSender() + ",,," + mail.getSubject() + ",Your message wasn't delivered to ";
 				for (String user : userNotFound) {
 					tempMail += user + " ";
@@ -131,4 +129,11 @@ public class FileHandler {
 			e.printStackTrace();
 		}
 	}
+//	ArrayList<String> getGroupNames(user){
+//
+//	}
+//	void createGroup(String user){
+//		String path="D:\\Gmail Management System\\Groups\\"+user+".csv";
+//
+//	}
 }
